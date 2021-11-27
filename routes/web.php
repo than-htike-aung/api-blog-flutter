@@ -2,10 +2,11 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CategoryController;
 
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,6 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::get('/create-category', [CategoryController::class, 'create']);
-Route::post('post-category-form',[CategoryController::class, 'store']);
+Route::get('/create-category', [CategoryController::class, 'create'])->name('create.category');
+Route::post('/post-category-form',[CategoryController::class, 'store']);
+Route::get('/all-categories',[CategoryController::class, 'index']);

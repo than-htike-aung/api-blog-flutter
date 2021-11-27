@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+       
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -37,7 +39,12 @@ class CategoryController extends Controller
     {
         $category = new Category();
         $category->name = $request->categoryName;
-        $category->save();
+        if($category->save()){
+            return redirect()->back()->with('success', 'Saved Successfully');
+
+        }else{
+            return redirect()->back()->with('failed', 'Could not save!');
+        }
 
       //return $request->input('categoryName');
       return $category;
